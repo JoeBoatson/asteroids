@@ -41,6 +41,13 @@ def main():
             d.draw(screen) # draw the player
         
         for a in all_asteroids:
+            for s in all_shots:
+                if a.collision(s):
+                    a.kill()
+                    s.kill()
+
+
+        for a in all_asteroids:
              if a.collision(player) == True:
                 print("Game over!")
                 sys.exit()
