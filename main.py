@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import *
 from circleshape import *
@@ -14,6 +15,7 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    all_shots = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     all_asteroids = pygame.sprite.Group()
@@ -36,7 +38,10 @@ def main():
         for d in drawable:
             d.draw(screen) # draw the player
         
-
+        for a in all_asteroids:
+             if a.collision(player) == True:
+                print("Game over!")
+                sys.exit()
         pygame.display.flip() # Refresh display
         dt = clock.tick(60) / 1000 #limits FPS to 60
         
