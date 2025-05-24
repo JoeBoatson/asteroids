@@ -43,8 +43,13 @@ def main():
         for a in all_asteroids:
             for s in all_shots:
                 if a.collision(s):
-                    a.kill()
+                    new_asteroids = a.split()
+                    if new_asteroids:
+                        all_asteroids.add(new_asteroids)
+                        updatable.add(new_asteroids)
+                        drawable.add(new_asteroids)
                     s.kill()
+
 
 
         for a in all_asteroids:
